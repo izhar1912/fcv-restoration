@@ -4,13 +4,13 @@
    Used by contact.html and pricing.html.
 
    1. Deploy Code.gs as a Google Apps Script Web App (see SETUP-GUIDE.md).
-   2. Paste the Web App URL (ends in /exec) into ENDPOINT below.
+   2. Paste the Web App URL (ends in /exec) into fcv-config.js.
    That is the only place the URL needs to live.
    ========================================================================== */
 (function () {
   'use strict';
 
-  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbwSUS7w2A_L6hVyHHHtgnqJybocrzB4w5mfkJCUP92ud7lzKae6n6dODItDAEqF0AL5/exec';
+  var ENDPOINT = window.FCV_ENDPOINT || '';   // set in fcv-config.js
   var THANK_YOU_PAGE = 'thank-you.html';
   var TIMEOUT_MS = 30000; // Apps Script writes the row AND sends 2 emails before it answers
 
@@ -25,7 +25,7 @@
    */
   function send(formType, payload) {
     if (!isConfigured()) {
-      console.error('[FCV forms] ENDPOINT is not set. Paste your Apps Script Web App URL into forms.js.');
+      console.error('[FCV forms] ENDPOINT is not set. Paste your Apps Script Web App URL into fcv-config.js.');
       return Promise.reject(new Error('Form endpoint not configured'));
     }
 

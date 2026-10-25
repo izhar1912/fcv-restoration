@@ -1,284 +1,253 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Private page for one customer: keep it out of every search engine -->
-<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
-<meta name="googlebot" content="noindex, nofollow">
-<meta name="referrer" content="no-referrer">
-<title>Track your request - FCV Restoration &amp; Construction</title>
-<link rel="icon" href="./Images/FCV Favicon.png">
-<style>
-:root{
-  --navy:#0d1b2a; --navy-2:#16283b; --gold:#f3b41e; --gold-d:#b7860b; --sand:#ece7d9; --paper:#f4f1ea;
-  --ink:#1f2937; --muted:#6b7280; --line:#e6e1d3; --green:#2c6e49; --red:#8a2a22;
-  --font:-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; --serif:Georgia,'Times New Roman',serif;
-}
-*{box-sizing:border-box}
-[hidden]{display:none!important}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 var(--font)}
-a{color:inherit}
-:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
-
-.top{background:var(--navy);border-bottom:5px solid var(--gold)}
-.top-in{max-width:46rem;margin:0 auto;padding:.9rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
-.top img{height:56px;width:auto;display:block}
-.top .tag{color:#b8c2ce;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;text-align:right}
-.wrap{max-width:46rem;margin:0 auto;padding:1.5rem 1.25rem 3rem}
-
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.8rem 1.3rem;border:2px solid transparent;border-radius:3px;
-  font-weight:700;font-size:.8125rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;cursor:pointer;line-height:1.1;background:none}
-.btn-gold{background:var(--gold);border-color:var(--gold);color:var(--navy)} .btn-gold:hover{background:#ffc437}
-.btn-ghost{background:#fff;border-color:var(--navy);color:var(--navy)} .btn-ghost:hover{background:var(--sand)}
-.btn svg{width:1.05em;height:1.05em}
-
-.hello .eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-d)}
-.hello h1{margin:.3rem 0 .4rem;font:400 2rem/1.2 var(--serif);color:var(--navy)}
-.hello p{margin:0;color:var(--muted);font-size:.95rem}
-.hello .refresh{border:0;background:none;color:var(--navy);font-weight:700;text-decoration:underline;cursor:pointer;padding:0;font-size:inherit}
-
-.card{background:#fff;border:1px solid var(--line);border-radius:4px;padding:1.25rem 1.4rem;margin-top:1rem}
-.card h2{margin:0 0 .9rem;padding-bottom:.6rem;border-bottom:2px solid var(--gold);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--navy)}
-
-/* status */
-.cur{display:flex;gap:1rem;align-items:flex-start}
-.cur .dot{flex:none;width:2.6rem;height:2.6rem;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;color:var(--navy)}
-.cur .dot svg{width:1.4rem;height:1.4rem}
-.cur h3{margin:0;font:400 1.5rem/1.25 var(--serif);color:var(--navy)}
-.cur p{margin:.25rem 0 0;color:#4b5563}
-.closed{background:#faf3f2;border-color:#ecc9c5}
-.closed .dot{background:#d6a5a0}
-
-.steps{list-style:none;margin:1.4rem 0 0;padding:0;display:grid;grid-template-columns:repeat(7,1fr)}
-.step{position:relative;text-align:center;padding:0 .25rem}
-.step:before{content:"";position:absolute;top:1.05rem;left:-50%;width:100%;height:3px;background:#ddd8c8;z-index:0}
-.step:first-child:before{display:none}
-.step.done:before,.step.now:before{background:var(--navy)}
-.c{position:relative;z-index:1;width:2.1rem;height:2.1rem;margin:0 auto .5rem;border-radius:50%;background:#fff;border:2px solid #d3ccb8;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;color:#9a9381}
-.step.done .c{background:var(--navy);border-color:var(--navy);color:var(--gold)}
-.step.now .c{background:var(--gold);border-color:var(--gold);color:var(--navy);box-shadow:0 0 0 5px rgba(243,180,30,.28)}
-.c svg{width:1rem;height:1rem}
-.l{font-size:.75rem;line-height:1.3;color:#8a8470;font-weight:600}
-.step.done .l,.step.now .l{color:var(--navy)}
-.step.now .l{font-weight:800}
-
-/* numbers */
-.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem}
-.tile{background:var(--paper);border-radius:3px;padding:.95rem 1rem;border-top:4px solid var(--navy)}
-.tile.price{border-top-color:var(--gold)} .tile.date{border-top-color:var(--green)}
-.tile .k{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--muted)}
-.tile .v{font:400 1.45rem/1.25 var(--serif);color:var(--navy);margin:.2rem 0}
-.tile .v.pending{font:italic 400 1.05rem/1.5 var(--font);color:#8a8470}
-.tile .s{font-size:.78rem;color:var(--muted);line-height:1.4}
-.note{margin:1rem 0 0;display:flex}
-.note:before{content:"";flex:none;width:5px;background:var(--gold)}
-.note div{background:#fff8e6;padding:.85rem 1rem;font-size:.9rem;line-height:1.6;flex:1}
-.note.ok:before{background:var(--green)} .note.ok div{background:#eef7f0}
-
-.msg{white-space:pre-wrap;word-break:break-word;background:#faf9f5;border-left:4px solid var(--navy);padding:.9rem 1.1rem;font-size:1.02rem}
-.msg small{display:block;margin-top:.6rem;color:var(--muted);font-size:.78rem}
-
-.items{list-style:none;margin:0;padding:0}
-.items li{position:relative;padding:.35rem 0 .35rem 1.35rem}
-.items li:before{content:"";position:absolute;left:0;top:.95em;width:.55rem;height:.55rem;background:var(--gold)}
-.items.visit li:before{background:#c2410c}
-.sub{margin:1rem 0 .2rem;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:#c2410c}
-.kv{display:grid;grid-template-columns:10.5rem 1fr;border-bottom:1px solid var(--line);margin:0}
-.kv:last-child{border-bottom:0}
-.kv dt,.kv dd{margin:0;padding:.6rem 0}
-.kv dt{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--muted);padding-top:.75rem}
-.kv dd{word-break:break-word}
-.muted{color:var(--muted)}
-
-.help{background:var(--navy);color:#fff;border-radius:4px;padding:1.5rem 1.4rem;margin-top:1rem;border-top:5px solid var(--gold)}
-.help h2{margin:0 0 .3rem;font:400 1.4rem/1.3 var(--serif)}
-.help p{margin:0 0 1rem;color:#c9d2dc;font-size:.95rem}
-.help .btns{display:flex;flex-wrap:wrap;gap:.6rem}
-.help .btn-ghost{background:transparent;border-color:rgba(255,255,255,.55);color:#fff} .help .btn-ghost:hover{background:rgba(255,255,255,.12)}
-.foot{text-align:center;color:var(--muted);font-size:.8rem;margin-top:1.6rem;line-height:1.7}
-
-.state{background:#fff;border:1px solid var(--line);border-radius:4px;padding:2.5rem 1.5rem;margin-top:1.5rem;text-align:center}
-.state h1{margin:0 0 .5rem;font:400 1.6rem/1.3 var(--serif);color:var(--navy)}
-.state p{margin:0 0 1.2rem;color:#4b5563}
-.spin{display:inline-block;width:1.2em;height:1.2em;border:3px solid var(--sand);border-top-color:var(--navy);border-radius:50%;animation:sp .8s linear infinite;vertical-align:-.2em;margin-right:.5rem}
-@keyframes sp{to{transform:rotate(360deg)}}
-
-@media (max-width:640px){
-  .hello h1{font-size:1.65rem}
-  .top img{height:46px}
-  .tiles{grid-template-columns:1fr}
-  .steps{grid-template-columns:1fr;gap:0;margin-left:.2rem}
-  .step{display:flex;align-items:center;gap:.9rem;text-align:left;padding:.5rem 0}
-  .step:before{top:-50%;left:1.05rem;width:3px;height:100%}
-  .c{margin:0;flex:none}
-  .l{font-size:.95rem}
-  .kv{grid-template-columns:1fr}.kv dt{padding-bottom:0}.kv dd{padding-top:.1rem}
-  .help .btn{flex:1 1 100%}
-}
-</style>
-</head>
-<body>
-<header class="top"><div class="top-in">
-  <img src="./Images/FCV Logo - Dark Mode.png" alt="FCV Restoration &amp; Construction">
-  <div class="tag">Your request</div>
-</div></header>
-
-<main class="wrap" id="root">
-  <div class="state"><p><span class="spin"></span>Loading your request&hellip;</p></div>
-</main>
-
-<script>
-(function () {
-  'use strict';
-
-  /* ==========================================================================
-     SETUP: paste the same Web App URL (ends in /exec) that you put in forms.js
-     ========================================================================== */
-  var ENDPOINT = 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
-
-  var REFRESH_MS = 120000;
-
-  // never show inside another site's frame
-  try { if (window.top !== window.self) { document.documentElement.style.display = 'none'; window.top.location = window.location; } } catch (e) {}
-
-  var root = document.getElementById('root');
-  var token = '';
-  var loadedAt = null, lastData = null;
-
-  var STEPS = [
-    ['New', 'Request received'], ['Contacted', 'We\u2019ve been in touch'], ['Site Visit Scheduled', 'Site visit'],
-    ['Quote Sent', 'Quote ready'], ['Accepted', 'Quote accepted'], ['Work in Progress', 'Work in progress'], ['Completed', 'Work completed']
-  ];
-  var INFO = {
-    'New': ['We\u2019ve received your request', 'Our team is reviewing it and will call to arrange a site visit, usually within two business days.'],
-    'Contacted': ['We\u2019ve been in touch', 'Our team has reached out about your request. If we haven\u2019t connected yet, please give us a call.'],
-    'Site Visit Scheduled': ['Your site visit is scheduled', 'Once we\u2019ve seen the work in person, we\u2019ll confirm your actual price.'],
-    'Quote Sent': ['Your quote is ready', 'Your quote is below. Call us if you\u2019d like to talk it through.'],
-    'Accepted': ['Quote accepted', 'Thank you. We\u2019ll be in touch about getting your project started.'],
-    'Work in Progress': ['Work is in progress', 'Your project is underway. Sign in to the Client Portal to follow costs, funding draws and receipts as they are recorded.'],
-    'Completed': ['Your project is complete', 'Thank you for choosing us. It was a pleasure working with you.'],
-    'Declined': ['This request is closed', 'If you\u2019d like to talk it through or start again, we\u2019re always happy to help.']
-  };
-
-  var ICON = {
-    check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
-    phone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>',
-    mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>',
-    info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v5h1"/></svg>'
-  };
-
-  function esc(s) { return String(s === null || s === undefined ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;'); }
-  function money(n) { n = Number(n); return '$' + n.toLocaleString('en-US', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 }); }
-  function dayText(ymd) {
-    var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(ymd || '')); if (!m) return '';
-    var d = new Date(+m[1], +m[2] - 1, +m[3]);
-    return d.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
-  }
-  function firstName(n) { return String(n || '').trim().split(/\s+/)[0] || 'there'; }
-  function configured() { return /^https:\/\/script\.google(usercontent)?\.com\/.+\/exec/.test(ENDPOINT); }
-
-  function readToken() {
-    var q = /[?&]k=([A-Za-z0-9]+)/.exec(location.search) || /[#&?]k=([A-Za-z0-9]+)/.exec(location.hash);
-    return q ? q[1] : '';
-  }
-
-  function showState(title, text, withRetry) {
-    root.innerHTML = '<div class="state"><h1>' + esc(title) + '</h1><p>' + text + '</p>' +
-      (withRetry ? '<button class="btn btn-gold" id="retry" type="button">Try again</button>' : '') + '</div>';
-    var r = document.getElementById('retry'); if (r) r.onclick = function () { load(false); };
-  }
-
-  function api() {
-    if (!configured()) return Promise.reject({ code: 'not_configured' });
-    var ctrl = typeof AbortController !== 'undefined' ? new AbortController() : null;
-    var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 40000) : null;
-    return fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action: 'track', token: token }), signal: ctrl ? ctrl.signal : undefined })
-      .then(function (r) { return r.json(); })
-      .then(function (d) { if (timer) clearTimeout(timer); if (!d || d.ok !== true) throw { code: (d && d.code) || 'error', message: d && d.error }; return d; })
-      .catch(function (e) { if (timer) clearTimeout(timer); if (e && e.code) throw e; throw { code: 'network' }; });
-  }
-
-  function load(silent) {
-    if (!token) {
-      showState('This link looks incomplete', 'Please open the \u201cView my request\u201d button in your confirmation email again, or call us and we\u2019ll help.', false); return;
-    }
-    if (!silent) root.innerHTML = '<div class="state"><p><span class="spin"></span>Loading your request&hellip;</p></div>';
-    api().then(function (d) { lastData = d; loadedAt = new Date(); render(d); })
-      .catch(function (e) {
-        if (silent && lastData) { var rf = document.getElementById('refresh'); if (rf) rf.textContent = 'Refresh'; return; }   // keep showing what we have
-        if (e.code === 'not_found') showState('We couldn\u2019t find that request', 'The link may be incomplete or out of date. Please use the button in your confirmation email, or call us and we\u2019ll sort it out.', false);
-        else if (e.code === 'not_configured') showState('This page isn\u2019t set up yet', 'Please contact us and we\u2019ll look into it.', false);
-        else showState('We couldn\u2019t load your request', 'Please check your internet connection and try again.', true);
-      });
-  }
-
-  function kv(label, v) { return v ? '<dl class="kv"><dt>' + esc(label) + '</dt><dd>' + esc(v) + '</dd></dl>' : ''; }
-
-  function render(d) {
-    var r = d.request, co = d.company, status = r.status, closed = status === 'Declined';
-    var idx = -1; STEPS.forEach(function (s, i) { if (s[0] === status) idx = i; });
-    var info = INFO[status] || [status, 'Your request is being handled by our team.'];
-
-    var h = '';
-    h += '<section class="hello"><div class="eyebrow">Reference ' + esc(r.reference) + '</div><h1>Hi ' + esc(firstName(r.name)) + ', here\u2019s where your request stands</h1>' +
-         '<p>Submitted ' + esc(new Date(r.submittedAt).toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' })) +
-         ' &middot; updated ' + esc(loadedAt.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' })) + ' &middot; <button class="refresh" id="refresh" type="button">Refresh</button></p></section>';
-
-    // status
-    h += '<section class="card' + (closed ? ' closed' : '') + '"><h2>Status</h2><div class="cur"><div class="dot">' + (closed ? ICON.info : ICON.check) + '</div><div><h3>' + esc(info[0]) + '</h3><p>' + esc(info[1]) + '</p></div></div>';
-    if (!closed && idx >= 0) {
-      h += '<ol class="steps" aria-label="Progress">' + STEPS.map(function (s, i) {
-        var cls = i < idx ? 'done' : i === idx ? 'now' : 'todo';
-        return '<li class="step ' + cls + '"' + (i === idx ? ' aria-current="step"' : '') + '><div class="c">' + (i < idx ? ICON.check : (i + 1)) + '</div><div class="l">' + esc(s[1]) + '</div></li>';
-      }).join('') + '</ol>';
-    }
-    if (status === 'Work in Progress' || status === 'Completed') h += '<p style="margin:18px 0 0"><a class="btn" href="/portal/" style="display:inline-block;padding:12px 20px;border-radius:999px;background:#F3B41E;color:#17120a;font-weight:800;text-decoration:none">Open your Client Portal</a></p>';
-    h += '</section>';
-
-    // numbers
-    var hasPrice = r.actualPrice !== null && r.actualPrice !== undefined;
-    var start = dayText(r.workStartDate);
-    h += '<section class="card"><h2>Your numbers</h2><div class="tiles">' +
-      '<div class="tile"><div class="k">Online estimate</div><div class="v">' + esc(r.estimateRange || 'Site visit needed') + '</div><div class="s">A rough estimate from our website</div></div>' +
-      '<div class="tile price"><div class="k">Your quote</div>' + (hasPrice ? '<div class="v">' + esc(money(r.actualPrice)) + '</div><div class="s">Confirmed after our site visit</div>' : '<div class="v pending">Not ready yet</div><div class="s">We\u2019ll confirm your actual price after our site visit</div>') + '</div>' +
-      '<div class="tile date"><div class="k">Work can start from</div>' + (start ? '<div class="v" style="font-size:1.2rem">' + esc(start) + '</div>' : '<div class="v pending">To be confirmed</div><div class="s">We\u2019ll agree this with you</div>') + '</div></div>' +
-      (hasPrice
-        ? '<div class="note ok"><div><strong>This is your quote following our site visit.</strong> It replaces the online estimate. If anything looks different from what we discussed, please call us.</div></div>'
-        : '<div class="note"><div><strong>Pricing can change.</strong> The online estimate is only a rough guide. Your price can change once our team visits your property and sees the work first-hand. We\u2019ll confirm your actual price with you after the visit.</div></div>') +
-      '</section>';
-
-    // message from the team
-    if (r.message) h += '<section class="card"><h2>A note from our team</h2><div class="msg">' + esc(r.message) + '<small>&mdash; ' + esc(co.name) + '</small></div></section>';
-
-    // selections
-    var items = r.items || [], visit = r.siteVisitItems || [];
-    h += '<section class="card"><h2>What you asked us to price</h2>' +
-      (items.length ? '<ul class="items">' + items.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' : '<p class="muted" style="margin:0">No priced items were selected.</p>') +
-      (visit.length ? '<div class="sub">We\u2019ll price these at the site visit</div><ul class="items visit">' + visit.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' : '') + '</section>';
-
-    // details
-    var addr = [r.address, r.city, r.zip].filter(Boolean).join(', ');
-    var det = kv('Property', addr) + kv('Property type', r.propertyType) + kv('Finish level', r.finishLevel) + kv('You\u2019d like to start', r.timeline) + kv('Insurance claim', r.insuranceClaim) + kv('Best time to reach you', r.bestTime) + kv('Your notes', r.notes);
-    if (det) h += '<section class="card"><h2>What you told us</h2>' + det + '</section>';
-
-    // help
-    h += '<section class="help"><h2>Questions? We\u2019re here.</h2><p>Call or email us any time and mention reference ' + esc(r.reference) + '.</p><div class="btns">' +
-      '<a class="btn btn-gold" href="tel:' + esc(co.phoneTel) + '">' + ICON.phone + ' Call ' + esc(co.phone) + '</a>' +
-      '<a class="btn btn-ghost" href="mailto:' + esc(co.email) + '?subject=' + encodeURIComponent('Question about my request ' + r.reference) + '">' + ICON.mail + ' Email us</a></div></section>';
-
-    h += '<p class="foot">' + esc(co.name) + '<br>' + esc(co.address) + '<br>This page is private to you. Please don\u2019t share the link.</p>';
-    root.innerHTML = h;
-    document.title = 'Your request ' + r.reference + ' - ' + co.name;
-    var rf = document.getElementById('refresh'); if (rf) rf.onclick = function () { rf.textContent = 'Refreshing...'; load(true); };
-  }
-
-  setInterval(function () { if (token && !document.hidden && lastData) load(true); }, REFRESH_MS);
-
-  token = readToken();
-  load(false);
-})();
-</script>
+<!-- This site was created in Webflow. https://webflow.com --><!-- Last Published: Wed Feb 11 2026 07:30:29 GMT+0000 (Coordinated Universal Time) -->
+<html data-wf-domain="kontrek.webflow.io" data-wf-page="698316aecf20e0a251148da2" data-wf-site="698316aecf20e0a251148dc6" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link href="https://cdn.prod.website-files.com" rel="preconnect" crossorigin="anonymous" />
+    <title>Track My Request - FCV Restoration & Construction</title>
+    <meta content="Follow your FCV Restoration & Construction request: status, quote, start date and project tracker." name="description" />
+    <meta content="Track My Request - FCV Restoration & Construction" property="og:title" />
+    <meta content="Follow your FCV Restoration & Construction request: status, quote, start date and project tracker." property="og:description" />
+    <meta content="./Images/Meta Image.png" property="og:image" />
+    <meta content="Track My Request - FCV Restoration & Construction" name="twitter:title" />
+    <meta content="Follow your FCV Restoration & Construction request: status, quote, start date and project tracker." name="twitter:description" />
+    <meta content="./Images/Meta Image.png" name="twitter:image" />
+    <meta property="og:type" content="website" />
+    <meta content="summary_large_image" name="twitter:card" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="referrer" content="no-referrer" />
+    <link href="https://cdn.prod.website-files.com/698316aecf20e0a251148dc6/css/kontrek.webflow.shared.b2e22e0d2.css" rel="stylesheet" type="text/css" integrity="sha384-suIuDSsoU4zZDcXhpfSXO6g7xiEC5RhoZJblQf4DD9yPJDJqGO+qaZkplNOrEAFB" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      WebFont.load({ google: { families: ['Bebas Neue:300,400,500,600,700', 'Inter Tight:300,400,500,600,700'] } });
+    </script>
+    <script type="text/javascript">
+      !(function (o, c) {
+        var n = c.documentElement,
+          t = ' w-mod-';
+        ((n.className += t + 'js'), ('ontouchstart' in o || (o.DocumentTouch && c instanceof DocumentTouch)) && (n.className += t + 'touch'));
+      })(window, document);
+    </script>
+    <link href="./Images/FCV Favicon.png" rel="shortcut icon" type="image/x-icon" />
+    <link href="./Images/FCV Favicon.png" rel="apple-touch-icon" />
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./assets/app.css">
+  </head>
+  <body>
+    <div data-w-id="f3f97cb2-a01c-9ed6-177b-0149b39775da" data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="fda-navbar-main fda-navbar-border-transparent w-nav">
+      <div class="fda-container-medium fda-tab-gutter-off w-container">
+        <div class="w-layout-hflex fda-navbar-content">
+          <a href="index.html" class="fda-padding-off fda-left-gap w-nav-brand"
+            ><div><img width="94" height="31" alt="FCV Restoration &amp; Construction logo" src="./Images/FCV Logo - Light Mode.png" loading="lazy" class="fda-logo" /></div
+          ></a>
+          <nav role="navigation" class="fda-nav-menu fda-change-background w-nav-menu">
+            <div class="fda-nav-wrapper">
+              <div>
+                <div class="fda-navmenu-wrapper">
+                  <a href="index.html" class="fda-menu-link w-inline-block"><div class="fda-menu-text fda-change-text-size">Home</div></a>
+                  <a href="about-us.html" class="fda-menu-link w-inline-block"><div class="fda-menu-text fda-change-text-size">About us</div></a>
+                  <a href="pricing.html" class="fda-menu-link w-inline-block"><div class="fda-menu-text fda-change-text-size">Pricing</div></a>
+                  <a href="services.html" class="fda-menu-link w-inline-block"><div class="fda-menu-text fda-change-text-size">Services</div></a>
+                  <a href="contact.html" class="fda-menu-link w-inline-block"><div class="fda-menu-text fda-change-text-size">Contact</div></a>
+                </div>
+                <div class="w-layout-hflex fda-nav-responsive-button-wrap">
+                  <div class="fda-nav-resposive-button">
+                    <a data-w-id="4d573006-709b-6a8e-9ad4-ca1a78da964f" href="pricing.html" class="fda-button-main fda-border-transparent fda-full-width w-inline-block"
+                      ><div class="fda-button-wrapper fda-full-width">
+                        <div class="fda-button-inner-wrapper fda-1 fda-full-width">
+                          <div class="fda-button-text-wrapper"><div class="fda-button-text">get started now</div></div>
+                          <div class="fda-button-text-arrow-wrapper"><img width="10" height="10" alt="" src="./Images/Button Arrow.svg" loading="lazy" class="fda-button-text-arrow" /></div>
+                        </div>
+                        <div class="fda-button-inner-wrapper fda-2 fda-full-width">
+                          <div class="fda-button-text-wrapper"><div class="fda-button-text fda-text-color-golden">get started now</div></div>
+                          <div class="fda-button-text-arrow-wrapper"><img width="10" height="10" alt="" src="./Images/Golden Arrow.svg" loading="lazy" class="fda-button-text-arrow" /></div>
+                        </div>
+                      </div>
+                      <div class="fda-button-black-overlay-corner fda-change-size fda-change-position"></div
+                    ></a>
+                  </div>
+                  <div class="fda-nav-resposive-button">
+                    <a data-w-id="505aa59f-d919-870f-1d58-d9907c4ab87a" href="contact.html" aria-current="page" class="fda-button-main fda-full-width w-inline-block w--current"
+                      ><div class="fda-button-wrapper fda-full-width">
+                        <div class="fda-button-inner-wrapper fda-1 fda-full-width">
+                          <div class="fda-button-text-wrapper"><div class="fda-button-text">contact us</div></div>
+                          <div class="fda-button-text-arrow-wrapper"><img width="10" height="10" alt="" src="./Images/Button Arrow.svg" loading="lazy" class="fda-button-text-arrow" /></div>
+                        </div>
+                        <div class="fda-button-inner-wrapper fda-2 fda-full-width">
+                          <div class="fda-button-text-wrapper"><div class="fda-button-text fda-text-color-white">contact us</div></div>
+                          <div class="fda-button-text-arrow-wrapper"><img width="10" height="10" alt="" src="./Images/Button Arrow.svg" loading="lazy" class="fda-invert-white fda-button-text-arrow" /></div>
+                        </div>
+                      </div>
+                      <div class="fda-button-black-overlay-corner fda-change-size fda-change-position"></div
+                    ></a>
+                  </div>
+                </div>
+              </div>
+              <div class="fda-nav-bottom-wrap">
+                <div class="w-layout-vflex fda-nav-description-v1">
+                  <div class="w-layout-hflex fda-footer-social-top">
+                    <div class="fda-sub-text">Follow us</div>
+                    <div class="fda-small-dash fda-change-color"></div>
+                  </div>
+                  <div class="w-layout-hflex fda-footer-social-icons-wrap">
+                    <a href="https://www.facebook.com/" target="_blank" class="fda-social-box fda-change-border w-inline-block"
+                      ><div class="w-layout-vflex fda-footer-icon-wrap"><img width="9" height="15" alt="" src="./Images/Facebook Icon Black.svg" loading="lazy" /></div></a
+                    ><a href="https://www.linkedin.com/" target="_blank" class="fda-social-box fda-change-border w-inline-block"
+                      ><div class="w-layout-vflex fda-footer-icon-wrap"><img width="9" height="15" alt="" src="./Images/Linkedin Icon Black.svg" loading="lazy" class="fda-icon-v1" /></div></a
+                    ><a href="https://www.instagram.com/" target="_blank" class="fda-social-box fda-change-border w-inline-block"
+                      ><div class="w-layout-vflex fda-footer-icon-wrap"><img width="9" height="15" alt="" src="./Images/Instagram Icon Black.svg" loading="lazy" /></div></a
+                    ><a href="https://x.com/" target="_blank" class="fda-social-box fda-change-border w-inline-block"
+                      ><div class="w-layout-vflex fda-footer-icon-wrap"><img width="9" height="15" alt="" src="./Images/Twitter Icon Black.svg" loading="lazy" /></div
+                    ></a>
+                  </div>
+                </div>
+                <div class="w-layout-hflex fda-nav-description-v2 fda-change-border-color">
+                  <div class="w-layout-hflex fda-nav-card-v1">
+                    <div class="w-layout-vflex fda-nav-icon-wrap-v1 fda-change-border">
+                      <div class="fda-nav-icon-v1">
+                        <div><img width="26" loading="lazy" alt="" src="./Images/Email Icon Black.svg" /></div>
+                      </div>
+                    </div>
+                    <div class="fda-nav-description-v2-text-wrap">
+                      <div class="fda-text-color-black">For more information</div>
+                      <a href="tel:3132932280" class="fda-text-style-h5 fda-text-color-black">(313) 293-2280</a>
+                    </div>
+                  </div>
+                  <div class="w-layout-hflex fda-nav-card-v1">
+                    <div class="w-layout-vflex fda-nav-icon-wrap-v1 fda-change-border">
+                      <div class="fda-nav-icon-v1">
+                        <div><img width="26" loading="lazy" alt="" src="./Images/Call Icon Black.svg" /></div>
+                      </div>
+                    </div>
+                    <div class="fda-nav-description-v2-text-wrap">
+                      <div class="fda-text-color-black">Email</div>
+                      <a href="mailto:quote@fcvrestoration.com" class="fda-text-style-h5 fda-text-color-black">quote@fcvrestoration.com</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+          <div data-w-id="f3f97cb2-a01c-9ed6-177b-0149b3977642" class="fda-menu-button fda-right-gap w-nav-button">
+            <div class="fda-menu-line fda-line-one fda-version-black"></div>
+            <div class="fda-menu-line fda-line-two fda-version-black"></div>
+            <div class="fda-menu-line fda-line-three fda-version-black"></div>
+          </div>
+          <div class="fda-navbar-button-wrapper fda-tab-display-none">
+            <a data-wf--fda-button-v1--variant="base" data-w-id="b2cae229-9343-bb63-3d8d-008342bf0ee6" href="contact.html" aria-current="page" class="fda-button-main w-inline-block w--current"
+              ><div class="fda-button-wrapper">
+                <div class="fda-button-inner-wrapper fda-1">
+                  <div class="fda-button-text-wrapper"><div class="fda-button-text">get a free quote</div></div>
+                  <div class="fda-button-text-arrow-wrapper"><img width="10" height="10" alt="" src="./Images/Button Arrow.svg" loading="lazy" class="fda-button-text-arrow" /></div>
+                </div>
+                <div class="fda-button-inner-wrapper fda-2">
+                  <div class="fda-button-text-wrapper"><div class="fda-button-text fda-text-color-white">get a free quote</div></div>
+                  <div class="fda-button-text-arrow-wrapper"><img width="10" height="10" alt="" src="./Images/Button Arrow.svg" loading="lazy" class="fda-invert-white fda-button-text-arrow" /></div>
+                </div>
+              </div>
+              <div class="fda-button-black-overlay-corner"></div>
+              <div class="fda-button-black-overlay"></div
+            ></a>
+          </div>
+        </div>
+      </div>
+      <div class="fda-navbar-main-overlay fda-version-white"></div>
+    </div>
+    <main class="fcv-app" id="app" aria-live="polite">
+      <div class="fcv-wrap"><div class="fcv-skel" style="height:140px"></div></div>
+    </main>
+    <footer data-wf--fda-footer--variant="base" class="fda-footer fda-overflow-hidden">
+      <div class="w-layout-blockcontainer fda-container-medium w-container">
+        <div class="fda-footer-top">
+          <div class="fda-footer-top-left">
+            <div>
+              <div data-w-id="a1cce851-072e-f5d4-bf45-f7f2c77dd2f0" class="fda-footer-heading fda-overflow-hidden"><h3 class="fda-gap-off fda-text-color-white fda-mobile-text-align-center">Building Strong Foundations for Residential and Commercial Projects</h3></div>
+              <div data-w-id="32581804-50c7-5bbd-7f29-f86803add327" class="fda-footer-get-started-wrapper fda-overflow-hidden">
+                <a data-w-id="a8416e24-bcd5-1a27-2990-5e430ccf61ae" href="pricing.html" class="fda-button-main fda-border-transparent w-inline-block"
+                  ><div class="fda-button-wrapper">
+                    <div class="fda-button-inner-wrapper fda-1">
+                      <div class="fda-button-text-wrapper"><div class="fda-button-text">get started today</div></div>
+                      <div class="fda-button-text-arrow-wrapper"><img width="10" height="10" alt="" src="./Images/Button Arrow.svg" loading="lazy" class="fda-button-text-arrow" /></div>
+                    </div>
+                    <div class="fda-button-inner-wrapper fda-2">
+                      <div class="fda-button-text-wrapper"><div class="fda-button-text fda-text-color-golden">get started today</div></div>
+                      <div class="fda-button-text-arrow-wrapper"><img width="10" height="10" alt="" src="./Images/Golden Arrow.svg" loading="lazy" class="fda-button-text-arrow" /></div>
+                    </div>
+                  </div>
+                  <div class="fda-button-black-overlay-corner"></div>
+                  <div class="fda-button-black-overlay"></div
+                ></a>
+              </div>
+            </div>
+          </div>
+          <div class="fda-footer-top-right fda-overflow-hidden">
+            <div data-w-id="a1cce851-072e-f5d4-bf45-f7f2c77dd302" class="fda-footer-top-left-inner">
+              <div class="fda-footer-links-wrapper">
+                <div class="fda-text-style-h5 fda-text-color-white">Quick links</div>
+                <div class="fda-footer-links-wrapper-inner"><a href="index.html" class="fda-text-style-h6 fda-text-color-white fda-hover-golden">Home</a><a href="about-us.html" class="fda-text-style-h6 fda-text-color-white fda-hover-golden">About us</a><a href="pricing.html" class="fda-text-style-h6 fda-text-color-white fda-hover-golden">Pricing</a><a href="services.html" class="fda-text-style-h6 fda-text-color-white fda-hover-golden">Services</a><a href="contact.html" aria-current="page" class="fda-text-style-h6 fda-text-color-white fda-hover-golden w--current">Contact</a></div>
+              </div>
+              <div class="fda-footer-links-wrapper">
+                <div class="fda-text-style-h5 fda-text-color-white">Social media</div>
+                <div class="fda-footer-links-wrapper-inner">
+                    <a href="" class="fda-text-style-h6 fda-text-color-white
+                    fda-hover-golden">Facebook</a>
+                    <a href="" class="fda-text-style-h6 fda-text-color-white
+                    fda-hover-golden">Twitter</a>
+                    <a href="" class="fda-text-style-h6 fda-text-color-white fda-hover-golden">Instagram</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fda-footer-middle-line"></div>
+      <div class="w-layout-blockcontainer fda-container-medium w-container">
+        <div class="fda-footer-middle">
+          <div class="fda-footer-middle-left fda-overflow-hidden">
+            <div data-w-id="a1cce851-072e-f5d4-bf45-f7f2c77dd31f" class="fda-footer-location-wrapper">
+              <div class="fda-location-icon-wrapper"><img src="./Images/Location Icon.svg" loading="lazy" alt="" /></div>
+              <div><div class="fda-text-style-h6 fda-text-color-white">570 Lake Cook Rd Ste 300, Deerfield, Illinois, 60015</div></div>
+            </div>
+          </div>
+          <div class="fda-footer-middle-right">
+            <div class="fda-footer-contact-details">
+              <div class="fda-overflow-hidden">
+                <div data-w-id="a1cce851-072e-f5d4-bf45-f7f2c77dd326" class="fda-text-style-h6 fda-text-color-white">Contact us - <a href="tel:3132932280" class="fda-text-color-white fda-hover-effect">(313) 293-2280</a></div>
+              </div>
+              <div class="fda-overflow-hidden">
+                <div data-w-id="a1cce851-072e-f5d4-bf45-f7f2c77dd32a" class="fda-text-style-h6 fda-text-color-white">Email -<a href="mailto:quote@fcvrestoration.com" class="fda-text-color-white fda-hover-effect"> quote@fcvrestoration.com</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fcv-legal" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem 2rem;padding:1.5rem 0 .5rem 0;margin-top:2rem;border-top:1px solid rgba(255,255,255,.18);">
+<div class="fda-text-color-white" style="font-size:.875rem;opacity:.8;">&copy; <span id="fcvYear">2026</span> FCV Restoration &amp; Construction. All rights reserved.</div>
+<div class="fcv-legal-links" role="navigation" aria-label="Policies" style="display:flex;flex-wrap:wrap;gap:.5rem 1.75rem;">
+<a href="privacy-policy.html" class="fda-text-color-white fda-hover-golden" style="font-size:.875rem;">Privacy Policy</a>
+<a href="terms-of-service.html" class="fda-text-color-white fda-hover-golden" style="font-size:.875rem;">Terms of Service</a>
+<a href="cookie-policy.html" class="fda-text-color-white fda-hover-golden" style="font-size:.875rem;">Cookie Policy</a>
+<a href="accessibility-statement.html" class="fda-text-color-white fda-hover-golden" style="font-size:.875rem;">Accessibility Statement</a>
+<a href="track.html" class="fda-text-color-white fda-hover-golden" style="font-size:.875rem;" rel="nofollow">Track My Request</a>
+</div>
+</div>
+<script>document.getElementById('fcvYear').textContent=new Date().getFullYear();</script>
+<div class="fda-footer-bottom">
+          <div text="big-text" class="fda-expertise-text-wrapper"><div class="fda-medium-text">FCV Restoration</div></div>
+        </div>
+      </div>
+    </footer>
+    <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=698316aecf20e0a251148dc6" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.prod.website-files.com/698316aecf20e0a251148dc6/js/webflow.schunk.36b8fb49256177c8.js" type="text/javascript" integrity="sha384-4abIlA5/v7XaW1HMXKBgnUuhnjBYJ/Z9C1OSg4OhmVw9O3QeHJ/qJqFBERCDPv7G" crossorigin="anonymous"></script>
+    <script src="https://cdn.prod.website-files.com/698316aecf20e0a251148dc6/js/webflow.schunk.4a415ac5556a5b5d.js" type="text/javascript" integrity="sha384-tqdfWbjlAbJb7P/jz95xkU8tmdQ2KvbE5EBtcOKTyVi4Xt0/oM/aSpJBNI+Sp5DC" crossorigin="anonymous"></script>
+    <script src="https://cdn.prod.website-files.com/698316aecf20e0a251148dc6/js/webflow.bf6fdb9c.54eec54e7f22a903.js" type="text/javascript" integrity="sha384-ikdcb+dtEIw/A//68byBqL4iSmKbqjdKpEKe6fmlicx0eGcpoBVfif4rBK1w9n+o" crossorigin="anonymous"></script>
+    <script src="https://cdn.prod.website-files.com/gsap/3.15.0/gsap.min.js" type="text/javascript"></script>
+    <script src="https://cdn.prod.website-files.com/gsap/3.15.0/SplitText.min.js" type="text/javascript"></script>
+    <script src="https://cdn.prod.website-files.com/gsap/3.15.0/ScrollTrigger.min.js" type="text/javascript"></script>
+  <script src="fcv-config.js"></script>
+    <script src="assets/app.js"></script>
+    <script src="assets/tracker.js"></script>
+    <script src="assets/track.js"></script>
 </body>
 </html>

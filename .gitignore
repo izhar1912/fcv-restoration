@@ -1,7 +1,0 @@
-node_modules/
-.netlify/
-.env
-.env.*
-*.log
-.DS_Store
-test/e2e/.built/

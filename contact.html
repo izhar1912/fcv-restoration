@@ -334,7 +334,7 @@
 <a href="terms-of-service.html" class="fda-text-color-white fda-hover-golden" style="font-size:.875rem;">Terms of Service</a>
 <a href="cookie-policy.html" class="fda-text-color-white fda-hover-golden" style="font-size:.875rem;">Cookie Policy</a>
 <a href="accessibility-statement.html" class="fda-text-color-white fda-hover-golden" style="font-size:.875rem;">Accessibility Statement</a>
-<a href="/portal/" class="fda-text-color-white fda-hover-golden" style="font-size:.875rem;" rel="nofollow">Client Portal</a>
+<a href="track.html" class="fda-text-color-white fda-hover-golden" style="font-size:.875rem;" rel="nofollow">Track My Request</a>
 </div>
 </div>
 <script>document.getElementById('fcvYear').textContent=new Date().getFullYear();</script>
@@ -350,105 +350,7 @@
     <script src="https://cdn.prod.website-files.com/gsap/3.15.0/gsap.min.js" type="text/javascript"></script>
     <script src="https://cdn.prod.website-files.com/gsap/3.15.0/SplitText.min.js" type="text/javascript"></script>
     <script src="https://cdn.prod.website-files.com/gsap/3.15.0/ScrollTrigger.min.js" type="text/javascript"></script>
-    <!-- ============================================================
-         Google Sheets form handler — replaces Webflow form submission
-         Paste your Apps Script Web App URL into SCRIPT_URL below.
-         ============================================================ -->
-    <script type="text/javascript">
-      (function () {
-        var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwaWQlv_gXVR1nQzRPGkNKuORfEvonFaqYgzB3MMg_WK2zoDqKb0mlNf1_pXaXdgQki/exec";
-
-        var FORM_ID = "wf-form-Contact-Form";
-
-        // Capture-phase listener on document fires BEFORE Webflow's
-        // jQuery submit handler, so data never reaches Webflow servers.
-        document.addEventListener(
-          "submit",
-          function (e) {
-            var form = e.target;
-            if (!form || form.id !== FORM_ID) return;
-
-            e.preventDefault();
-            e.stopImmediatePropagation();
-
-            // Native validation already passed (required fields, email
-            // type, checkbox) or the submit event wouldn't have fired.
-
-            var submitBtn = form.querySelector('input[type="submit"]');
-            var originalValue = submitBtn ? submitBtn.value : "";
-            var waitText = submitBtn ? submitBtn.getAttribute("data-wait") || "Please wait..." : "";
-            if (submitBtn) {
-              submitBtn.value = waitText;
-              submitBtn.disabled = true;
-            }
-
-            // Also update the animated overlay button text
-            var overlayTexts = form.querySelectorAll(".fda-button-text");
-            overlayTexts.forEach(function (el) {
-              el.setAttribute("data-original", el.textContent);
-              el.textContent = waitText;
-            });
-
-            var payload = {
-              name: (form.querySelector("#name") || {}).value || "",
-              phone: (form.querySelector("#Phone-number") || {}).value || "",
-              email: (form.querySelector("#Email") || {}).value || "",
-              subject: (form.querySelector("#Subject") || {}).value || "",
-              message: (form.querySelector("#Message") || {}).value || ""
-            };
-
-            var formBlock = form.closest(".w-form");
-            var successEl = formBlock ? formBlock.querySelector(".w-form-done") : null;
-            var failEl = formBlock ? formBlock.querySelector(".w-form-fail") : null;
-
-            function resetButton() {
-              if (submitBtn) {
-                submitBtn.value = originalValue;
-                submitBtn.disabled = false;
-              }
-              overlayTexts.forEach(function (el) {
-                el.textContent = el.getAttribute("data-original") || el.textContent;
-              });
-            }
-
-            function showSuccess() {
-              form.style.display = "none";
-              if (successEl) successEl.style.display = "block";
-              if (failEl) failEl.style.display = "none";
-            }
-
-            function showFail() {
-              resetButton();
-              if (failEl) failEl.style.display = "block";
-            }
-
-            // text/plain avoids a CORS preflight, which Apps Script
-            // web apps cannot answer. The body is still JSON.
-            fetch(SCRIPT_URL, {
-              method: "POST",
-              headers: { "Content-Type": "text/plain;charset=utf-8" },
-              redirect: "follow",
-              body: JSON.stringify(payload)
-            })
-              .then(function (res) {
-                if (!res.ok) throw new Error("HTTP " + res.status);
-                return res.json().catch(function () {
-                  return { result: "success" }; // opaque/non-JSON but 2xx
-                });
-              })
-              .then(function (data) {
-                if (data && data.result === "error") throw new Error(data.message || "Script error");
-                showSuccess();
-              })
-              .catch(function (err) {
-                console.error("Form submission failed:", err);
-                showFail();
-              });
-          },
-          true // capture phase — critical for beating Webflow's handler
-        );
-      })();
-    </script>
+  <script src="fcv-config.js"></script>
   <script src="forms.js"></script>
 </body>
 </html>
