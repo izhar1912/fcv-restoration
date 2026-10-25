@@ -1,0 +1,30 @@
+.fda-select-field{
+  border-radius: 0px;
+}
+.fda-marquee-logo{
+        height: 50px !important;
+        width: auto !important;
+      }
+      .fda-about-support-main{
+        background-image: url(./Images/Main\ Big\ Image.png) !important;
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+      }
+      .fda-footer{
+        background-image: linear-gradient(rgba(0, 0, 0, 0.90), rgba(0, 0, 0, 0.90)), url(./Images/Footer\ Background.png) !important;
+      }
+      body{
+        overflow-x: hidden !important;
+      }
+      .w-webflow-badge{
+        display: none !important;
+      }
+      .fda-new-hero-title{
+        margin-bottom: 10px !important;
+      }
+      .fda-expertise-text-wrapper{
+        flex: none !important;
+      }
+      
