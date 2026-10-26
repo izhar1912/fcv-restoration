@@ -27,4 +27,7 @@
       .fda-expertise-text-wrapper{
         flex: none !important;
       }
+      a svg {
+        max-width: 1.5rem;
+      }
       
